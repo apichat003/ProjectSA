@@ -1,7 +1,9 @@
 package com.cpe.sa.main.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.cpe.sa.main.entity.*;
 import com.cpe.sa.main.repository.*;
@@ -21,6 +23,9 @@ public class SalenoteController{
     @Autowired ReceiptRepository receiptRepository;
     @Autowired OrdersRepository ordersRepository;
 
+    @Autowired private UserRepository userRepository;
+    @Autowired private PillRepository pillRepository;
+
     @GetMapping("/receipt")
     public List<Receipt> allReceipts(){
         return receiptRepository.findAll();
@@ -34,8 +39,26 @@ public class SalenoteController{
     @PostMapping("/receipt")
     public Receipt addReceipt(Receipt newReceipt, @RequestBody Map<String,String> body){
 
+        Optional<User> user = userRepository.findById(Long.valueOf(body.get("user")));
+
+        newReceipt.setUser(user.get());
+        newReceipt.setDate(new Date());
 
         return receiptRepository.save(newReceipt);
+    }
+
+    @PostMapping("/orders")
+    public Orders addOrders(Orders newOrders, @RequestBody Map<String,String> body){
+
+        Pill pill = pillRepository.findByName(body.get("pill"));
+        Optional<Receipt> receipt = receiptRepository.findById(Long.valueOf(body.get("receipt")));
+
+
+        newOrders.setReceipt(receipt.get());
+        newOrders.setPill(pill);
+        newOrders.setAmount(Integer.valueOf(body.get("amount")));
+
+        return ordersRepository.save(newOrders);
     }
 
 }
