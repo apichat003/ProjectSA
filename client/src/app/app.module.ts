@@ -10,8 +10,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {LayoutModule} from '@angular/cdk/layout';
 
 import { NavbarComponent } from './navbar/navbar.component';
-import { AddOrderComponent } from './warehouse/add-order/add-order.component';
-import { HistorySaleComponent } from './warehouse/history-sale/history-sale.component';
+import { AddOrderComponent } from './salenote/add-order/add-order.component';
+import { HistorySaleComponent } from './salenote/history-sale/history-sale.component';
 
 
 const appRoutes: Routes = [

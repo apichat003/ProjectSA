@@ -19,6 +19,7 @@ public class Receipt {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     @ManyToOne

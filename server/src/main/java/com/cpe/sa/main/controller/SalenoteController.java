@@ -11,6 +11,7 @@ import com.cpe.sa.main.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,10 +37,10 @@ public class SalenoteController{
         return ordersRepository.findAll();
     }
 
-    @PostMapping("/receipt")
-    public Receipt addReceipt(Receipt newReceipt, @RequestBody Map<String,String> body){
+    @PostMapping("/receipt/{userid}")
+    public Receipt addReceipt(Receipt newReceipt, @PathVariable Long userid){
 
-        Optional<User> user = userRepository.findById(Long.valueOf(body.get("user")));
+        Optional<User> user = userRepository.findById(userid);
 
         newReceipt.setUser(user.get());
         newReceipt.setDate(new Date());
