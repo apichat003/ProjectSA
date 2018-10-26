@@ -1,0 +1,28 @@
+a:visited , a:link {
+    text-decoration: none;
+    color: #ffffff;
+    
+}
+.title {
+    margin-right: 30px;
+    margin-left: 20px;
+}
+
+.navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}

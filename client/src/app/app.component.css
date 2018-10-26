@@ -1,0 +1,10 @@
+.container {
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 5rem;
+  }
+  
+  .content {
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+  }
